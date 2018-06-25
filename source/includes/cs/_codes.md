@@ -77,3 +77,10 @@ Stav ověření bankovního účtu
 Hodnota parametru|Popis
 -----------------|-----
 VERIFIED|Oveřen
+
+##Stav ověření adresy
+Stav ověření trvalé adresy Klienta
+
+Hodnota parametru|Popis
+-----------------|-----
+VERIFIED|Oveřena
