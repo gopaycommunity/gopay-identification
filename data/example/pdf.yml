@@ -1,0 +1,6 @@
+
+request:
+    shell: |
+        curl -v - N https://client.beta.dev.gopay.cz/api/client-profile/123/identification-pdf \
+        -H "Authorization: Bearer eyJraWQiOiJkZWZhdWx0IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ"  
+

@@ -19,7 +19,7 @@ If you do not have ClientID and ClientSecret, please, <a href="mailto:integrace@
 
 > Request
 
-<%= partial "includes/examples", :locals => { :example => data.example.oauth.request } %>
+<%= partial "includes/examples", :locals => { :example => data.example.token.request } %>
 
 <h5>Header of the request</h5>
 Parameter's name|Parameter's description|Required
@@ -37,7 +37,7 @@ grant_type|client_credentials|YES
 
 > Response
 
-<%= partial "includes/examples", :locals => { :example => data.example.oauth.response } %>
+<%= partial "includes/examples", :locals => { :example => data.example.token.response } %>
 
 
 <h5>Response</h5>

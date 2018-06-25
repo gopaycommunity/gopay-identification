@@ -1,4 +1,46 @@
-# Rozšířené funkce
+# Další funkce
 
 Dodatečné funkcionality využívají shodné komunikace s platební bránou jako funkce standardní implementace,
-ale rozšiřují ji o nové možnosti (např. EET, dávkové zpracování superCASH plateb, atd.).
+ale rozšiřují ji o nové možnosti.
+
+## Předvyplnění údajů
+
+Slouží pro předvyplnění údajů o `Klientovi` pro účely budoucí registrace/identifikace.
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.prefill.request } %>
+
+<h5>Request</h5>
+
+```POST /prefill-client-data```
+
+<h5>Hlavička požadavku</h5>
+
+Název parametru | Popis parametru | Povinný
+----------------|-----------------|--------
+Content-Type|application/json|ANO
+Authorization|Bearer [```<access-token>```](#aplikacni-token)|ANO
+
+<h5>Tělo požadavku</h5>
+
+Název parametru | Popis parametru | Datový typ
+----------------|-----------------|-----------
+firstName|Jméno zákazníka|	string
+lastName|Příjmení zákazníka|	string
+email|Validní e-mail zákazníka|	string
+phoneNumber|Telefonní číslo zákazníka s předvolbou	|string
+domesticBankAccount|Domácí forma bankovního účtu|string
+[internationalBankAccount](#internationalbankaccount)|Mezinárodní forma bankovního účtu|objekt
+address|Adresa zákazníka|string
+
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.prefill.response } %>
+
+<h5>Response</h5>
+
+Název parametru|Popis parametru| Datový typ
+---------------|---------------|-----------
+prefillId| ID provedené operace| string

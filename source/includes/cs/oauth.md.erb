@@ -1,13 +1,14 @@
-# Autentizace
+# Autentizační služba
 
-GoPay REST API používá pro autorizaci přístupu k API principu [OAuth2.0](http://tools.ietf.org/html/rfc6749), 
-konkrétně metodu klientské autentizace viz [http://tools.ietf.org/html/rfc6749#section-4.4](http://tools.ietf.org/html/rfc6749#section-4.4)
+Umožňuje autorizovat operace prováděné přes API GoPay.
 
-## Přístupový token
+## Aplikační token
 
-Základním prvkem veškeré komunikace přes REST API je přístupový token, který je vytvořen na základě předávaných přístupových údajů ve formě ```<ClientID>```:```<ClientSecret>```.
- Token je předáván jako autorizační parametr v hlavičce HTTP dotazu prostřednictvím ```Authorization: Bearer <Access-Token>```. Získaný přístupový token je předáván pro každý další požadavek na API.   
- Životnost tokenu je vždy omezena na 30 minut. Po jeho vypršení je nutné vytvořit nový přístupový token.
+Základním prvkem veškeré komunikace přes API je přístupový token, který je vytvořen na základě předávaných přístupových údajů ve formě ```<ClientID>```:```<ClientSecret>```.
+Token je předáván jako autorizační parametr v hlavičce HTTP dotazu prostřednictvím ```Authorization: Bearer <Access-Token>```.
+
+Získaný přístupový token je předáván pro každý další požadavek na API.
+
 <aside class="notice">
   Pokud ještě nemáte ClientID a ClientSecret, <a href="mailto:integrace@gopay.cz?subject=GoPay - žádost o aplikační údaje"><font color="black">kontaktujte nás</font></a>.
 </aside>
@@ -18,7 +19,7 @@ Základním prvkem veškeré komunikace přes REST API je přístupový token, k
 
 > Request
 
-<%= partial "includes/examples", :locals => { :example => data.example.oauth.request } %>
+<%= partial "includes/examples", :locals => { :example => data.example.token.request } %>
 
 <h5>Hlavička požadavku</h5>
 Název parametru|Popis parametru|Povinný
@@ -36,7 +37,7 @@ grant_type|client_credentials|ANO
 
 > Response
 
-<%= partial "includes/examples", :locals => { :example => data.example.oauth.response } %>
+<%= partial "includes/examples", :locals => { :example => data.example.token.response } %>
 
 <h5>Response</h5>
 
@@ -51,3 +52,142 @@ Přístupový token pro scope payment-create je určen výhradně k založení p
 jako např. dotaz na stav, refundace platby musí být doprovázeny tokenem, který je určen pro
 obsluhování operací s platbami (scope payment-all).
 </aside>
+
+
+## Consent token
+
+Připojením získá ```Odběratel identity``` možnost číst identifikační data ```Klienta```.
+
+Access (consent) token zároveň reprezentuje souhlas Klienta s předáváním identifikačních údajů Odběratelem identity.
+
+K připojení využíváme <b>OAuth 2.0</b>, konkrétně průchod Authorization Code Grant.
+
+### Získání
+
+<b>Připojení uživatelského profilu</b>
+
+Cílem připojení uživatelského profilu je získání access/refresh tokenu, který bude následně využíván Odběratelem identity k dotazování Identifikační služby.
+
+<br>
+
+<b>Přesměrování Klienta na autentizační službu</b>
+
+Odběratel identity přesměrovává Klienta na autentizační službu pro získání ```access tokenu```.
+
+Příklad přesměrování: ```https://auth.beta.dev.gopay.cz/consent?scopes[]=perm.client.identification:read&state=customer123&client_id=777777777777&redirect_uri=https:/callback.odberatel-identity.cz```
+
+V rámci ```GET``` parametrů se předává:
+
+Název parametru|Popis parametru|
+---------------|---------------|
+scopes| perm.client.identification (oblast přístupu o kterou Odběratel identity žádá)
+state| Párovací identifikátor (je předáván jako query parametr redirect_url)
+client_id| Identifikátor aplikace Odběratele identity
+redirect_uri| URL na něž bude Klient vrácen po udělení souhlasu Odběrateli identity
+
+<br>
+
+<b>Přesměrování Klienta na URL Odběralete identity</b>
+
+Klient po provedení registrace, případně přihlášení, udělí ```consent``` a je přesměrován zpět na ```redirect_uri```.
+
+Příklad přesměrování:
+```https://callback.odberatel-identity.cz/?code=98e804e5-f5ae-4c07-9e2e-539c06d623a2&state=customer123```
+
+V redirectu předáváme parametry:
+
+Název parametru|Popis parametru|
+---------------|---------------|
+code| Autorizační kód pro získání access tokenu, životnost 10 minut
+state| Párovací identifikátor
+
+<br>
+
+<b>Získání consentu Klienta</b>
+
+Pro získání ```access tokenu``` (consentu / souhlasu Klienta) provede Odběratel identity volání níže.
+
+Pro opětovné získání čerstvého `access tokenu` je nutné použít postup [obnovy](#obnova) consent tokenu.
+
+<h5>Request</h5>
+
+```POST /api/token```
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.consent_token.request } %>
+
+<h5>Tělo požadavku</h5>
+
+Název parametru|Popis parametru|Povinný
+---------------|---------------|-------
+authorization_code| Dočasný autorizační kód|ANO
+client_id| client_credentials|ANO
+client_secret| client_credentials|ANO
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.consent_token.response } %>
+
+<h5>Response</h5>
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-----------
+accessToken| Přístupový token, aktivní po dobu 60 minut|string
+refreshToken| Slouží pro získání nového access tokenu|string
+
+### Obnova
+
+`Access token` má omezenu životnost na dobu 60 minut. Pro opětovné získání čerstvého
+access tokenu je nutné použít postup, viz níže.
+
+`Refresh token` je nutné držet relaci na `Klienta`. Je nutné zajistit jeho bezpečné uložení.
+Pro snížení pravděpodobnosti úniku využíváme výměnu refresh tokenu při každém obnovení.
+
+<h5>Request</h5>
+
+```POST /api/token```
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.refresh_token.request } %>
+
+<h5>Tělo požadavku</h5>
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-----------
+client_id| client_credentials|integer
+client_secret| client_credentials|string
+grant_type| Typ požadavku| string
+refresh_token| Refresh token| string
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.refresh_token.response } %>
+
+<h5>Response</h5>
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-----------
+accessToken| Přístupový token, aktivní po dobu 60 minut.|string
+refreshToken| Slouží pro získání nového access tokenu. POZOR - refreshToken se mění s každým voláním.|string
+
+### Revokace
+
+Pomocí revokace tokenu provede `Odběratel identity` odpojení identifikačního profilu.
+
+<h5>Request</h5>
+
+```POST /api/revoke```
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.revoke_token.request } %>
+
+<h5>Tělo požadavku</h5>
+
+Název parametru|Popis parametru|Datový typ
+---------------|---------------|-----------
+client_id| client_credentials|integer
+client_secret| client_credentials|string
+token| Refresh token| string

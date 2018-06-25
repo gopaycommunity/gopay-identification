@@ -1,0 +1,30 @@
+
+request:
+    shell: |
+        curl -v https://auth.beta.dev.gopay.cz/api/token \
+        -X "POST" \
+        -d "client_id=777777777777&client_secret=AbAbAbAbAbAb&grant_type=authorization_code&code=67c6540e-4bbf-4e0d-a4c7-3fa418d30f5e"
+
+
+response:
+    json: |
+        {"refreshToken":
+            "eyJraWQiOiJkZWZhdWx0IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI5
+            Nzc1MDc3NS1lODdmLTQyNzgtOTdlNC1iY2IxNzJjZDNhMzMiLCJpc3MiOiJnb3BheS5jb20i
+            LCJqdGkiOiItNTY1MDU5NzQ0ODI1NDgzODAzIn0.MmJf0ZYgM9KBEWjnNeml_GKGmj3pctjt
+            ufWwe-685N0oecux48nTq5SuRqfTfpflLUN76XwW4XVXiDYupG2xGgJiFk5KgemOzaIrM01I
+            lcOBoDxQFXxH96rKgODIhZ0Y1CpIspQMFwBgdEksC-mlumQM5quJd8i8Hj31yg2nA1I0IOhW
+            PAUg0dRg4tEUn_V1JFM3_qlU5mFzFZTWLOuV5bF4CRxxbTx2RGbU9HExHmmRVBzpze-XISmc
+            wLR4uzxRs9YgPzpzE3ZXudXv3SUpdNn0X-i-lApfBWJ9k0jm2bfdO77tTi4_JwgdoBEj3RMy
+            XD1UxvylAI2zNQrFg7GTsA",
+        "accessToken":
+            "eyJraWQiOiJkZWZhdWx0IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJo
+            dHRwOi8vYXV0aC9hcHAvMzI3IiwiaXNzIjoiZ29wYXkuY29tIiwic2NvcGVzIjpbInBlcm0u
+            Y2xpZW50LmlkZW50aWZpY2F0aW9uIiwiaHR0cDovL2NsaWVudC9jbGllbnRwcm9maWxlLzU4
+            MSJdLCJleHAiOjE1MTM1OTcwOTgsImp0aSI6Ijg5MTc0NzE1Mjc3Nzk1MjczNDkifQ.QKKKC
+            9EkxWS-7yi2LiRwELruziDlulOOAEAdAfxIPHSaubqllLVTFnCHf-Dm4bCkHhv-t7e9sJemt
+            6AED4BH1fRg8s3_p0sahEd362O-gt0NyTTkPfnmmvUcbk2EfuFLZAoQqeni4NWgHTJWKWc9H
+            NyFgAkyEbhopJ8mc5wP3o1AjiArHuLZmFaB9Cu6FWB64w5hkpTzx_YzpjVU1YxypF-8rPFRn
+            X4duHSPXRhr7WmM-NjFwsYxBvuqNkagzENsvveJs3CnNIryZ0tlSgxiSEpCQeHRIJigHWpoG
+            Vg_cy2f-pN-nU1OLdPHNh8Ycb_xRvjA5CXC8mhXamo95F4dpg"
+        }
