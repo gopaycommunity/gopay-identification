@@ -7,17 +7,6 @@
         Autentizační služba - https://auth.beta.dev.gopay.cz   
         Identifikační služba -  https://client.beta.dev.gopay.cz   
 
-        DOSTUPNÉ METODY  
-
-        [/oauth2/token](#přístupový-token)  
-        [/payments/payment](#založení-platby)  
-        [/payments/payment/{id}](#stav-platby)  
-        [/payments/payment/{id}/refund](#refundace-platby-(storno))  
-        [/payments/payment/{id}/create-recurrence](#opakování-platby-(na-vyžádání))   
-        [/payments/payment/{id}/void-recurrence](#zrušení-opakování-platby)  
-        [/payments/payment/{id}/void-authorization](#zrušení-předautorizace-platby)  
-        [/payments/payment/{id}/capture](#stržení-předautorizované-platby)  
-
     en: |
         API ENDPOINTS
 

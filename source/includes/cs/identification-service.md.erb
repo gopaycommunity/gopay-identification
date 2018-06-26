@@ -27,7 +27,7 @@ Umožňuje číst identifikační údaje Klienta, případně aktuální stav pr
 
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
-Authorization|Bearer [```<access-token>```](#ziskani)|ANO
+Authorization|Bearer [```<ConsentToken>```](#ziskani)|ANO
 
 > Response.
 
@@ -49,8 +49,11 @@ dateLastChange|Datum poslední změny v rámci procesu identifikace|string, yyyy
 
 ## Doplnění údajů
 
-Pokud Odběratel identity požaduje doplnit/změnit identifikační údaje, potom přesměrovává Klienta na Identifikační službu GoPay pro doplnění údajů.
+Pokud `Odběratel identity` požaduje doplnit/změnit identifikační údaje, potom přesměrovává Klienta na Identifikační službu GoPay pro doplnění údajů.
 
+Zde se `Klient` přihlašuje do svého profilu, kde může provést požadované změny.
+
+URL pro přesměrování: `https://client.beta.dev.gopay.cz/identification`
 
 
 ## PDF opis

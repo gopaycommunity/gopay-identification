@@ -4,8 +4,8 @@ Umožňuje autorizovat operace prováděné přes API GoPay.
 
 ## Aplikační token
 
-Základním prvkem veškeré komunikace přes API je přístupový token, který je vytvořen na základě předávaných přístupových údajů ve formě ```<ClientID>```:```<ClientSecret>```.
-Token je předáván jako autorizační parametr v hlavičce HTTP dotazu prostřednictvím ```Authorization: Bearer <Access-Token>```.
+Aplikační token je vytvořen na základě předávaných přístupových údajů ve formě ```<ClientID>```:```<ClientSecret>```.
+Token je předáván jako autorizační parametr v hlavičce HTTP dotazu prostřednictvím ```Authorization: Bearer <accessToken>```.
 
 Získaný přístupový token je předáván pro každý další požadavek na API.
 
@@ -15,7 +15,7 @@ Získaný přístupový token je předáván pro každý další požadavek na A
 
 <h5>Request</h5>
 
-```POST /api/oauth2/token```
+```GET /login/app```
 
 > Request
 
@@ -24,16 +24,7 @@ Získaný přístupový token je předáván pro každý další požadavek na A
 <h5>Hlavička požadavku</h5>
 Název parametru|Popis parametru|Povinný
 ---------------|---------------|-------
-Accept|application/json|ANO
-Content-Type|application/x-www-form-urlencoded|ANO
 Authorization|[HTTP basic authentication](http://cs.wikipedia.org/wiki/Basic_access_authentication) pomocí níž předáváte ```<ClientID>```:```<ClientSecret>```|ANO
-
-<h5>Tělo požadavku</h5>
-
-Název parametru|Popis parametru|Povinný
----------------|---------------|-------
-[scope](#scope)|Definuje kategorii funkcionalit které může daná akce obsluhovat|ANO
-grant_type|client_credentials|ANO
 
 > Response
 
@@ -43,15 +34,8 @@ grant_type|client_credentials|ANO
 
 Název parametru|Popis parametru|Povinný
 ---------------|---------------|-------
-token_type|bearer|ANO
-access_token|Přístupový token|ANO
-expires_in|Čas expirace tokenu v sekundách|ANO
+accessToken|Přístupový token|ANO
 
-<aside class="notice">
-Přístupový token pro scope payment-create je určen výhradně k založení platby. Další funkcionality,
-jako např. dotaz na stav, refundace platby musí být doprovázeny tokenem, který je určen pro
-obsluhování operací s platbami (scope payment-all).
-</aside>
 
 
 ## Consent token

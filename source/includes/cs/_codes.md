@@ -15,15 +15,15 @@ Seznam důvodů, proč nebyla identifikace Klienta provedena, či proč stále p
 
 Hodnota parametru|Popis
 -----------------|-----
-EXPIRED_IDENTIFICATION|
-EXPIRED_IDENT_DOCUMENT|
-WAITING_IDENT_DOCUMENT|
-WAITING_ADDITIONAL_DOCUMENT|
-WAITING_ADDRESS|
-WAITING_BANK_ACCOUNT|
-DENIED_FRAUD|
-DENIED_FACEMATCH|
-DENIED_BAD_QUALITY_DOCUMENT|
+EXPIRED_IDENTIFICATION|Vypršela platnost identifikace
+EXPIRED_IDENT_DOCUMENT|Vypršela platnost identifikačního dokladu
+WAITING_IDENT_DOCUMENT|Čekání na identifikační doklad
+WAITING_ADDITIONAL_DOCUMENT|Čekání na dodatečný doklad
+WAITING_ADDRESS|Čekání na ověření adresy
+WAITING_BANK_ACCOUNT|Čekání na ověření bankovního účtu
+DENIED_FRAUD|Zamítnuto - padělaný doklad
+DENIED_FACEMATCH|Zamítnuto - neshoda obličeje
+DENIED_BAD_QUALITY_DOCUMENT|Zamítnuto - špatná kvalita dokladu
 
 ##subjectType
 Právní povaha identifikovaného subjektu
