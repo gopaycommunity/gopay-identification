@@ -4,9 +4,9 @@ V rámci identifikační služby nabízí GoPay provedení identifikace uživate
 Získané údaje GoPay ukládá na zabezpečené úložiště a umožňuje k nim permanentní přístup prostřednictvím API v datové formě nebo ve formátu .PDF ve formě opisu identifikace.
 Zároveň s tím GoPay uložená data monitoruje a podporuje jejich aktuální platnost.
 
-Autentizační služba: ```auth.beta.dev.gopay.cz/api```.
+Autentizační služba: ```auth.beta.dev.gopay.cz```.
 
-Identifikační služba: ```client.beta.dev.gopay.cz/api```.
+Identifikační služba: ```client.beta.dev.gopay.cz```.
 
 Identifikační služba je komplexní zpracování a porovnání všech vstupních informací a materiálů poskytnutých uživatelem, jako jsou porovnání fotografie na dokladu s fotografiemi na druhém dokladu či “facematch” (jedná se o živě pořízenou fotografii), dále validace majitele bankovního účtu či disponenta na úrovni manžel či manželka s majitelem dokladu, porovnání ručně zadané adresy s IP a GEO lokalizací a mnoho dalších interních křížových kontrol, vypracovaných konkrétně pro tuto službu s cílem zvýšení kvality výstupních dat výrazně nad rámec legislativních požadavků.
 
@@ -21,7 +21,7 @@ Umožňuje číst identifikační údaje Klienta, případně aktuální stav pr
 
 <h5>Request</h5>
 
-```GET /client-profile/me/identification-status```
+```GET /api/client-profile/me/identification-status```
 
 <h5>Hlavička požadavku</h5>
 
@@ -69,7 +69,7 @@ Parametr `CLIENT-PROFILE-ID` je získán z odpovědi dotazu na [stav identifikac
 
 <h5>Request</h5>
 
-```GET /client-profile/{CLIENT-PROFILE-ID}/identification-pdf```
+```GET /api/client-profile/{CLIENT-PROFILE-ID}/identification-pdf```
 
 <h5>Hlavička požadavku</h5>
 
