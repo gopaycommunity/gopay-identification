@@ -54,11 +54,11 @@ Cílem připojení uživatelského profilu je získání access/refresh tokenu, 
 
 <br>
 
-<b>Přesměrování Klienta na autentizační službu</b>
+<b>1) Přesměrování Klienta na autentizační službu</b>
 
 Odběratel identity přesměrovává Klienta na autentizační službu pro získání ```access tokenu```.
 
-Příklad přesměrování: ```https://auth.beta.dev.gopay.cz/consent?scopes[]=perm.client.identification:read&state=customer123&client_id=777777777777&redirect_uri=https:/callback.odberatel-identity.cz```
+<%= partial "includes/examples", :locals => { :example => data.example.a_redirect_gopay.request } %>
 
 V rámci ```GET``` parametrů se předává:
 
@@ -71,12 +71,11 @@ redirect_uri| URL na něž bude Klient vrácen po udělení souhlasu Odběrateli
 
 <br>
 
-<b>Přesměrování Klienta na URL Odběralete identity</b>
+<b>2) Přesměrování Klienta na URL Odběralete identity</b>
 
 Klient po provedení registrace, případně přihlášení, udělí ```consent``` a je přesměrován zpět na ```redirect_uri```.
 
-Příklad přesměrování:
-```https://callback.odberatel-identity.cz/?code=98e804e5-f5ae-4c07-9e2e-539c06d623a2&state=customer123```
+<%= partial "includes/examples", :locals => { :example => data.example.b_redirect_merchant.request } %>
 
 V redirectu předáváme parametry:
 
@@ -87,7 +86,7 @@ state| Párovací identifikátor
 
 <br>
 
-<b>Získání consentu Klienta</b>
+<b>3) Získání consentu Klienta</b>
 
 Pro získání ```access tokenu``` (consentu / souhlasu Klienta) provede Odběratel identity volání níže.
 
