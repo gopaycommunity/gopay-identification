@@ -1,0 +1,5 @@
+
+request:
+    shell: |
+        curl -v "https://callback.odberatel-identity.cz/?code=98e804e5-f5ae-4c07-9e2e-539c06d623a2&state=customer123" \
+        -X "GET"

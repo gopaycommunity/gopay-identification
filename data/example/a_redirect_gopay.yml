@@ -1,0 +1,5 @@
+
+request:
+    shell: |
+        curl -v "https://auth.beta.dev.gopay.cz/consent?scopes[]=perm.client.identification:read&state=customer123&client_id=777777777777&redirect_uri=https:/callback.odberatel-identity.cz" \
+        -X "GET"
