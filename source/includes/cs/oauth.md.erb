@@ -50,7 +50,7 @@ K připojení využíváme <b>[OAuth 2.0](https://tools.ietf.org/html/rfc6749)</
 
 <b>Připojení uživatelského profilu</b>
 
-Cílem připojení uživatelského profilu je získání access/refresh tokenu, který bude následně využíván Odběratelem identity k dotazování Identifikační služby.
+Cílem připojení uživatelského profilu je získání access/refresh (consent) tokenu, který bude následně využíván `Odběratelem identity` k dotazování [Identifikační služby](#identifikacni-sluzba).
 
 <br>
 
@@ -60,7 +60,7 @@ Odběratel identity přesměrovává Klienta na autentizační službu pro získ
 
 <%= partial "includes/examples", :locals => { :example => data.example.a_redirect_gopay.request } %>
 
-V rámci ```GET``` parametrů se předává:
+V rámci ```GET``` parametrů Odběratel identity předává:
 
 Název parametru|Popis parametru|
 ---------------|---------------|
@@ -73,11 +73,11 @@ redirect_uri| URL na něž bude Klient vrácen po udělení souhlasu Odběrateli
 
 <b>2) Přesměrování Klienta na URL Odběralete identity</b>
 
-Klient po provedení registrace, případně přihlášení, udělí ```consent``` a je přesměrován zpět na ```redirect_uri```.
+Klient po provedení registrace, případně přihlášení, udělí ```consent``` a je přesměrován zpět na ```redirect_uri``` Odběratele identity.
 
 <%= partial "includes/examples", :locals => { :example => data.example.b_redirect_merchant.request } %>
 
-V redirectu předáváme parametry:
+V redirectu předáváme `GET` parametry:
 
 Název parametru|Popis parametru|
 ---------------|---------------|
