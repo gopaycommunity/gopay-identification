@@ -27,9 +27,9 @@ Umožňuje číst identifikační údaje Klienta, případně aktuální stav pr
 
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
-Authorization|Bearer [```<ConsentToken>```](#ziskani)|ANO
+Authorization|Bearer [```<access-token>```](#klientsky-token)|ANO
 
-> Response.
+> Response
 
 <%= partial "includes/examples", :locals => { :example => data.example.status.response } %>
 
@@ -75,7 +75,11 @@ Parametr `CLIENT-PROFILE-ID` je získán z odpovědi dotazu na [stav identifikac
 
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
-Authorization|Bearer [```<access-token>```](#ziskani)|ANO
+Authorization|Bearer [```<access-token>```](#klientsky-token)|ANO
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.pdf.response } %>
 
 <h5>Response</h5>
 

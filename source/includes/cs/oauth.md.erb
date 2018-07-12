@@ -1,13 +1,20 @@
-# Autentizační služba
+# Autorizační služba
 
-Umožňuje autorizovat operace prováděné přes API GoPay.
+Umožňuje autorizovat operace prováděné přes API GoPay. K připojení využíváme standard [OAuth 2.0](https://tools.ietf.org/html/rfc6749).
+
+ <aside class="notice">
+   Autorizační služba využívá více typů autorizačních tokenů, mezi kterými je nutné odlišovat. Každý typ autorizačního tokenu má
+   určenou oblast operací, pro které je určen.
+ </aside>
 
 ## Aplikační token
 
 Aplikační token je vytvořen na základě předávaných přístupových údajů ve formě ```<ClientID>```:```<ClientSecret>```.
+
 Token je předáván jako autorizační parametr v hlavičce HTTP dotazu prostřednictvím ```Authorization: Bearer <accessToken>```.
 
-Získaný přístupový token je předáván pro každý další požadavek na API.
+K připojení využíváme [OAuth 2.0](https://tools.ietf.org/html/rfc6749), konkrétně průchod [Client credentials](https://tools.ietf.org/html/rfc6749#section-1.3.4).
+
 
 <aside class="notice">
   Pokud ještě nemáte ClientID a ClientSecret, <a href="mailto:integrace@gopay.cz?subject=GoPay - žádost o aplikační údaje"><font color="black">kontaktujte nás</font></a>.
@@ -37,26 +44,25 @@ Název parametru|Popis parametru|Povinný
 accessToken|Přístupový token|ANO
 
 
-
-## Consent token
+##Klientský token
 
 Připojením získá ```Odběratel identity``` možnost číst identifikační data ```Klienta```.
 
-Access (consent) token zároveň reprezentuje souhlas Klienta s předáváním identifikačních údajů Odběratelem identity.
+Klientský token zároveň reprezentuje souhlas (Consent) Klienta s předáváním identifikačních údajů Odběratelem identity.
 
-K připojení využíváme <b>[OAuth 2.0](https://tools.ietf.org/html/rfc6749)</b>, konkrétně průchod `Authorization Code Grant`.
 
-### Získání
-
-<b>Připojení uživatelského profilu</b>
-
-Cílem připojení uživatelského profilu je získání access/refresh (consent) tokenu, který bude následně využíván `Odběratelem identity` k dotazování [Identifikační služby](#identifikacni-sluzba).
+K připojení využíváme [OAuth 2.0](https://tools.ietf.org/html/rfc6749), konkrétně průchod [Authorization Code](https://tools.ietf.org/html/rfc6749#section-1.3.1).
 
 <br>
 
-<b>1) Přesměrování Klienta na autentizační službu</b>
+<b>Postup připojení uživatelského profilu</b>
 
-Odběratel identity přesměrovává Klienta na autentizační službu pro získání ```access tokenu```.
+Cílem připojení uživatelského profilu je získání klientského (Consent) tokenu, který bude následně využíván `Odběratelem identity` k dotazování [Identifikační služby](#identifikacni-sluzba).
+
+
+<b>1) Přesměrování Klienta na autorizační službu</b>
+
+Odběratel identity přesměrovává Klienta na autorizační službu pro získání ```access tokenu```.
 
 <%= partial "includes/examples", :locals => { :example => data.example.a_redirect_gopay.request } %>
 
@@ -73,7 +79,8 @@ redirect_uri| URL na něž bude Klient vrácen po udělení souhlasu Odběrateli
 
 <b>2) Přesměrování Klienta na URL Odběralete identity</b>
 
-Klient po provedení registrace, případně přihlášení, udělí ```consent``` a je přesměrován zpět na ```redirect_uri``` Odběratele identity.
+Klient, po provedení registrace, případně přihlášení, udělí souhlas. Následně je přesměrován zpět na ```redirect_uri``` Odběratele identity
+s potřebným autorizačním kódem (`code`) pro následné získání klientského tokenu.
 
 <%= partial "includes/examples", :locals => { :example => data.example.b_redirect_merchant.request } %>
 
@@ -86,11 +93,11 @@ state| Párovací identifikátor
 
 <br>
 
-<b>3) Získání consentu Klienta</b>
+<b>3) Získání klientského tokenu</b>
 
-Pro získání ```access tokenu``` (consentu / souhlasu Klienta) provede Odběratel identity volání níže.
+Na základě získaného autorizačního kódu (`code`) provede Odběratel identity volání níže pro získání klientského `access tokenu`.  
 
-Pro opětovné získání čerstvého `access tokenu` je nutné použít postup [obnovy](#obnova) consent tokenu.
+Pro opětovné získání čerstvého `access tokenu` je nutné použít postup [obnovy](#obnova) klientského tokenu.
 
 <h5>Request</h5>
 
@@ -119,9 +126,9 @@ Název parametru|Popis parametru|Datový typ
 accessToken| Přístupový token, aktivní po dobu 60 minut|string
 refreshToken| Slouží pro získání nového access tokenu|string
 
-### Obnova
+## Obnova
 
-`Access token` má omezenu životnost na dobu 60 minut. Pro opětovné získání čerstvého
+[Klientský token](#klientsky-token) má omezenu životnost na dobu 60 minut. Pro opětovné získání čerstvého
 access tokenu je nutné použít postup, viz níže.
 
 `Refresh token` je nutné držet relaci na `Klienta`. Je nutné zajistit jeho bezpečné uložení.
@@ -155,9 +162,9 @@ Název parametru|Popis parametru|Datový typ
 accessToken| Přístupový token, aktivní po dobu 60 minut.|string
 refreshToken| Slouží pro získání nového access tokenu. POZOR - refreshToken se mění s každým voláním.|string
 
-### Revokace
+## Revokace
 
-Pomocí revokace tokenu provede `Odběratel identity` odpojení identifikačního profilu.
+Pomocí revokace [tokenu](#klientsky-token) provede `Odběratel identity` odpojení identifikačního profilu.
 
 <h5>Request</h5>
 
