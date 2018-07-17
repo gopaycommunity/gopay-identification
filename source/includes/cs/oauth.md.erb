@@ -99,13 +99,13 @@ Na základě získaného autorizačního kódu (`code`) provede Odběratel ident
 
 Pro opětovné získání čerstvého `access tokenu` je nutné použít postup [obnovy](#obnova) klientského tokenu.
 
-<h5>Request</h5>
-
-```POST /api/token```
-
 > Request
 
 <%= partial "includes/examples", :locals => { :example => data.example.consent_token.request } %>
+
+<h5>Request</h5>
+
+```POST /api/token```
 
 <h5>Tělo požadavku</h5>
 
