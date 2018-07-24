@@ -1,6 +1,6 @@
 #Číselníky
 
-##Stav identifikace
+##state
 Stav identifikace klientského profilu
 
 Hodnota parametru|Popis

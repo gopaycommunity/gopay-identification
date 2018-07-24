@@ -38,7 +38,7 @@ Authorization|Bearer [```<access-token>```](#klientsky-token)|ANO
 Název parametru|Popis parametru| Datový typ
 ---------------|---------------|-----------
 clientProfileId|Identifikátor klientského profilu|integer
-[state](#stav-identifikace)|Stav identifikace klientského profilu|string
+[state](#state)|Stav identifikace klientského profilu|string
 [reasons](#reasons)|Důvody neprovedení/průběhu identifikace Klienta|string
 dateStarted|Den počátku identifikačního procesu Klienta|string, yyyy-mm-dd HH:MM:SS:MS
 dateLastChange|Datum poslední změny v rámci procesu identifikace|string, yyyy-mm-dd HH:MM:SS:MS HH:MM:SS:MS
@@ -60,8 +60,11 @@ URL pro přesměrování: `https://client.beta.dev.gopay.cz/identification`
 
 Umožňuje vygenrovat PDF opis identifikovaného Klienta.
 
-Parametr `CLIENT-PROFILE-ID` je získán z odpovědi dotazu na [stav identifikace](#stav-identifikace).
+Parametr `CLIENT-PROFILE-ID` je získán z odpovědi dotazu na [stav identifikace](#state).
 
+<aside class="notice">
+  Pokud byl souhlas Klienta již historicky udělen, je v hlavičce požadavku možné použít i aplikační token.
+</aside>
 
 > Request
 

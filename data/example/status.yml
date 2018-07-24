@@ -7,11 +7,11 @@ request:
 response:
     json: |
         {
-          "clientProfileId": 142 ,
-          "state": "NOT_IDENTIFIED" ,
-          "reasons": [
-              "EXPIRED_IDENTIFICATION"
-              ],
-          "dateStarted": "2018-02-13 08:25:37.619" ,
-          "dateLastChange": "2018-04-14 08:25:37.619"
+            "clientProfileId": 1,
+            "state": "NOT_IDENTIFIED",
+            "reasons": [
+                "DENIED_FACEMATCH"
+            ],
+            "dateStarted": "2018-07-19 10:00:02.423",
+            "dateLastChange": "2018-07-22 10:00:02.423"
         }
