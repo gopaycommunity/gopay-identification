@@ -27,7 +27,7 @@ Umožňuje číst identifikační údaje Klienta, případně aktuální stav pr
 
 Název parametru | Popis parametru | Povinný
 ----------------|-----------------|--------
-Authorization|Bearer [```<access-token>```](#klientsky-token)|ANO
+Authorization|Bearer [```Klientský <access-token>```](#klientsky-token)|ANO
 
 > Response
 
@@ -62,9 +62,6 @@ Umožňuje vygenrovat PDF opis identifikovaného Klienta.
 
 Parametr `CLIENT-PROFILE-ID` je získán z odpovědi dotazu na [stav identifikace](#state).
 
-<aside class="notice">
-  Pokud byl souhlas Klienta již historicky udělen, je v hlavičce požadavku možné použít i aplikační token.
-</aside>
 
 > Request
 
@@ -73,6 +70,10 @@ Parametr `CLIENT-PROFILE-ID` je získán z odpovědi dotazu na [stav identifikac
 <h5>Request</h5>
 
 ```GET /api/client-profile/{CLIENT-PROFILE-ID}/identification-pdf```
+
+<aside class="notice">
+  V hlavičce požadavku je možné použít jak Klientský, tak i Aplikační token (pokud byl souhlas Klienta historicky udělen).
+</aside>
 
 <h5>Hlavička požadavku</h5>
 
