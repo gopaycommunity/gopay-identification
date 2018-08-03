@@ -1,1 +1,70 @@
 # Identification service
+
+Authorization service: ```auth.beta.dev.gopay.cz```.
+
+Identification service: ```client.beta.dev.gopay.cz```.
+
+## Identification status
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.status.request } %>
+
+<h5>Request</h5>
+
+```GET /api/client-profile/me/identification-status```
+
+<h5>HEADER OF REQUEST</h5>
+
+Parameter’s name | Parameter’s description | Required
+-----------------|-------------------------|----------
+Authorization|Bearer [```Client <access-token>```](#client-token)|YES
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.status.response } %>
+
+<h5>Response</h5>
+
+Parameter’s name | Parameter’s description | Data’s type
+-----------------|-------------------------|--------------
+clientProfileId|Identifier of client profile|integer
+[state](#state)|Identification status of client profile|string
+[reasons](#reasons)|List of reasons why the process failed or not yet finished|string
+dateStarted|Date when the identification process started|string, yyyy-mm-dd HH:MM:SS:MS
+dateLastChange|Date of the last activity within identification process|string, yyyy-mm-dd HH:MM:SS:MS HH:MM:SS:MS
+[subjectType](#subjecttype)|Legal type of identification subject|string
+[subjectData](#subjectdata)|Aggregates known information about the client|object
+[identificationData](#identificationdata)|Contains all of the collected identification data|object
+
+## Client data prefill
+
+URL for redirirection: `https://client.beta.dev.gopay.cz/identification`
+
+## PDF
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.pdf.request } %>
+
+<h5>Request</h5>
+
+```GET /api/client-profile/{CLIENT-PROFILE-ID}/identification-pdf```
+
+<aside class="notice">
+  In the header of request you can use Client or Application token (if the consent was successfully given by client). 
+</aside>
+
+<h5>HEADER OF REQUEST</h5>
+
+Parameter’s name | Parameter’s description | Required
+-----------------|-------------------------|----------
+Authorization|Bearer [```Client <access-token>```](#client-token)|YES
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.pdf.response } %>
+
+<h5>Response</h5>
+
+Response type ```application/pdf```.

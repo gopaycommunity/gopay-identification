@@ -1,21 +1,11 @@
-# Authentication
+# Authorization service
 
-GoPay uses REST API for authorization of the access to API principal OAuth2.0,
-in specific method of client authentication, see [http://tools.ietf.org/html/rfc6749#section-4.4](http://tools.ietf.org/html/rfc6749#section-4.4)
 
-## Access token
-
-The basic element of all communication via REST API is an access token that is created by using the access data in the form of ```<ClientID>```:```<ClientSecret>```. 
-A token is set as an authorization parameter in HTTP request header through ```Authorization: Bearer <Access-Token>```. This token is set for every requirement for API. 
-Token expires after 30 minutes. After expiry of the token, it is necessary to create a new access token.
-<aside class="notice">
-If you do not have ClientID and ClientSecret, please, <a href="mailto:integrace@gopay.cz?subject=GoPay - credentials request"><font color="black">contact us</font></a>.
-</aside>
-
+## Application token
 
 <h5>Request</h5>
 
-```POST /api/oauth2/token```
+```GET /api/login/app```
 
 > Request
 
@@ -23,33 +13,121 @@ If you do not have ClientID and ClientSecret, please, <a href="mailto:integrace@
 
 <h5>Header of the request</h5>
 Parameter's name|Parameter's description|Required
----------------|---------------|-------
-Accept|application/json|YES
-Content-Type|application/x-www-form-urlencoded|YES
-Authorization|[HTTP basic authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) which is set as ```<ClientID>```:```<ClientSecret>```|YES
-
-<h5>Body of the request</h5>
-
-Parameter's name|Parameter's description|Required
----------------|---------------|-------
-[scope](#scope)|Defines a category of functionalities that can operate a given action|YES
-grant_type|client_credentials|YES
+----------------|-----------------------|---------
+Authorization|HTTP authorization which is set as ```<ClientID>```:```<ClientSecret>```|YES
 
 > Response
 
 <%= partial "includes/examples", :locals => { :example => data.example.token.response } %>
 
-
 <h5>Response</h5>
 
 Parameter's name|Parameter's description|Required
----------------|---------------|-------
-token_type|bearer|YES
+----------------|-----------------------|---------
 access_token|Access token|YES
-expires_in|Token expiry time in seconds|YES
 
-<aside class="notice">
-Access token for the scope payment-create is intended exclusively to establish the payment. Other functions, 
-such as query about the status of payment, refund of payment, must be accompanied by a token, which is intended for 
-servicing operations connected with payments (scope payment-all).
-</aside>
+## Client token
+
+<b>Required steps</b>
+
+<b>1) Redirecting Client to authorization service</b>
+
+<%= partial "includes/examples", :locals => { :example => data.example.a_redirect_gopay.request } %>
+
+Parameter's name|Parameter's description|
+----------------|-----------------------|
+scopes| perm.client.identification (scope of access)
+state| Pairing identifier (is set as query parameter redirect_url)
+client_id| Merchant's client identifier
+redirect_uri| URL address where Client will be redirected to after make of consent
+
+<br>
+
+<b>2) Redirecting Client to merchant's URL</b>
+
+<%= partial "includes/examples", :locals => { :example => data.example.b_redirect_merchant.request } %>
+
+Parameter's name|Parameter's description|
+----------------|-----------------------|
+code| Authorization code for getting of access tokenu, expired in 10 minutes
+state| Pairing identifier
+
+<br>
+
+<b>3) Getting of Client's token</b>
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.consent_token.request } %>
+
+<h5>Request</h5>
+
+```POST /api/token```
+
+<h5>Body of request</h5>
+
+Parameter's name|Parameter's description|Required
+----------------|-----------------------|---------
+authorization_code| Authorization code |YES
+client_id| client_credentials| YES
+client_secret| client_credentials| YES
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.consent_token.response } %>
+
+<h5>Response</h5>
+
+Parameter's name|Parameter's description| Data’s type
+----------------|-----------------------|------------
+accessToken| Access token, active for 1 hour|string
+refreshToken| Serves for getting of new accessToken|string
+
+## Refresh
+
+<h5>Request</h5>
+
+```POST /api/token```
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.refresh_token.request } %>
+
+<h5>Body of request</h5>
+
+Parameter's name|Parameter's description|Required
+----------------|-----------------------|---------
+client_id| client_credentials|integer
+client_secret| client_credentials|string
+grant_type| Type of request| string
+refresh_token| [Refresh token](#client-token)| string
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.refresh_token.response } %>
+
+<h5>Response</h5>
+
+Parameter's name|Parameter's description| Data’s type
+----------------|-----------------------|-------------
+accessToken| Access token, active for 1 hour|string
+refreshToken| Serves for getting of new accessToken. CAUTION - Refresh token is changed with every single calling of refresh function.|string
+
+
+## Revocation
+
+<h5>Request</h5>
+
+```POST /api/revoke```
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.revoke_token.request } %>
+
+<h5>Body of request</h5>
+
+Parameter's name|Parameter's description|Data’s type
+----------------|-----------------------|---------
+client_id| client_credentials|integer
+client_secret| client_credentials|string
+refresh_token| [Refresh token](#client-token)| string

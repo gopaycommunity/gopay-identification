@@ -10,16 +10,5 @@
     en: |
         API ENDPOINTS
 
-        Autentizační služba - https://auth.beta.dev.gopay.cz   
-        Identifikační služba -  https://client.beta.dev.gopay.cz   
-
-        AVAILABLE METHODS  
-
-        [/oauth2/token](#access-token)  
-        [/payments/payment](#establishment-of-payment)  
-        [/payments/payment/{id}](#status-of-the-payment)  
-        [/payments/payment/{id}/refund](#refund-of-the-payment-(cancelation))  
-        [/payments/payment/{id}/create-recurrence](#cancellation-of-the-recurring-payment)   
-        [/payments/payment/{id}/void-recurrence](#cancellation-of-the-recurring-payment)  
-        [/payments/payment/{id}/void-authorization](#cancellation-of-the-pre-authorized-payment)  
-        [/payments/payment/{id}/capture](#charge-of-pre-authorized-payment)  
+        Authorization service - https://auth.beta.dev.gopay.cz   
+        Identification service -  https://client.beta.dev.gopay.cz   
