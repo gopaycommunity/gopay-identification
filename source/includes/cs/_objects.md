@@ -223,8 +223,8 @@ dateOfBirth|Datum narození|string, yyyy-mm-dd
 birthNumber|Rodné číslo|string
 [sex](#sex)|Pohlaví|string
 country|Kód země|string
-faceMatch|Údaje získané rozpoznáním obličeje|objekt
-identDocuments|Údaje hlavního identifikačního dokladu|objekt
+[faceMatch](#facematch)|Údaje získané rozpoznáním obličeje|objekt
+[identDocuments](#identdocuments)|Údaje hlavního identifikačního dokladu|objekt
 [bankAccounts](#bankaccounts)|Identifikace bankovním účtem|objekt
 [addresses](#addresses)|Ověření trvalé adresy|objekt
 [additionalDocuments](#additionaldocuments)|Další doklady|objekt

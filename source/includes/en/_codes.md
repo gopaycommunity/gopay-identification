@@ -1,266 +1,86 @@
 #Code lists
-##recurrence_cycle
-Cycle of recurring payment
-
-Parameter's value|Description
------------------|-----
-DAY| Daily recurring
-WEEK| Weekly recurring
-MONTH| Monthly recurring
-ON_DEMAND| Set only at manual recurring payments
-
-
-##currency
-Payment currency
-
-Parameter's value|Description
-------------------|-----
-CZK | Czech crowns
-EUR | Euros
-PLN | Polish złoty
-HUF | Hungarian forint
-GBP | British pound
-USD | US dollar
-RON | Romanian Leu
-HRK | Kuna
-BGN | Bulgarian Lev
-
-##scope
-Parameter describing group of acquired rights
-
-Parameter's value|Description
--------|-----
-payment-create|Allows only the establishment of payments
-payment-all|Allows all operations above payments
-
-##result
-Result of operation
-
-Parameter's name|Parameter's description
----------------|---------------
-ACCEPTED| Request accepted 
-FINISHED| Operation finished
-FAILED| Operation failed
-
-##Payment status 
-Payment can gain values following status
-
-Parameter's name|Parameter's description
------------|---------------------
-CREATED|Payment created 
-PAYMENT_METHOD_CHOSEN|Payment method chosen
-PAID|Payment paid
-AUTHORIZED|Payment pre-authorized
-CANCELED|Payment canceled
-TIMEOUTED|Payment timeouted
-REFUNDED|Payment refunded
-PARTIALLY_REFUNDED|Payment partially refunded
-
-##Payment substate
-Payment can gain values following substates
-
-Parameter's value|Parameter's description
------------|---------------------
-_101|Payment pending. We are waiting for the online payment to be made.
-_102|Payment pending. We are waiting for the offline payment to be made.
-_3001|Bank payment confirmed by letter of advice.
-_3002|Bank payment confirmed by statement.
-_3003|Bank payment not authorised.
-_5002|Payment declined by the customer's bank authorization centre. The payment card limit had been reached.
-_5003|Payment declined by the customer's bank authorization centre. There are some issues at the card issuer side.
-_5004|Payment declined by the customer's bank authorization centre. Issues at the card issuer side.
-_5005|Payment declined by the customer's bank authorization centre.  Payment card blocked.
-_5006|Payment declined by the customer's bank authorization centre. Insufficient funds at the payment card. 
-_5007|Payment declined by the customer's bank authorization centre. The payment card is expired.
-_5008|Payment declined by the customer's bank authorization centre. The CVV/CVC code had been declined.
-_5009, _5015, _5017, _5018, _5019, _6502, _6504|Payment declined in the 3D Secure system of the customer's bank.
-_5010, _5014|Payment declined by the customer's bank authorization centre. There are some issues with the payment card. 
-_5011, _5036|Payment declined by the customer's bank authorization centre. There are some issues with the payment card account.
-_5012|Payment declined by the customer's bank authorization centre. There are some technical issues in the customer's bank authorization centre.
-_5013|Payment declined by the customer's bank authorization centre. The customer entered an incorrect card number. 
-_5016|Payment declined by the customer's bank authorization centre. The customer's card had not been authorized to make the payment.
-_5021|Payment declined by the customer's bank authorization centre. The card limits had been exceeded.
-_5022|A technical issue occured in the customer's bank authorization centre. 
-_5023, _5038|Payment not made. 
-_5024|Payment not made. Customer did not enter the payment credentials in the time limit at the payment gateway.
-_5025|Payment not made. The specific reason is to be reported to the customer. 
-_5026|Payment not made. The total credited amounts exceeded the amount paid. 
-_5027|Payment not made. The user is not authorized to undertake the operation. 
-_5028|Payment not made. The amount due exceeded the amount authorized. 
-_5029|Payment has not been made yet. 
-_5030|Payment not made. There were several attempts to settle the payment.
-_5031|A technical issue occurred in the bank while processing the payment.
-_5033|SMS failed to be received. 
-_5035|Card issued in a region where the card payments are not supported. 
-_5037|Cardholder cancelled the payment. 
-_5039|Payment declined by the customer's bank authorization centre. The payment card is blocked. 
-_5042|Bank transfer declined. 
-_5043|Payment cancelled by user.
-_5044|SMS has been sent. It has not been delivered yet. 
-_5045|Payment received. Payment is to be credited after it has been processed in the Bitcoin system.
-_5046|A full amount of payment not made. 
-_5047|Payment made after due date.
-
-##lang
-Setting of the language of the payment gateway
-
-Language's code|Language
-----------|-----
-CS| Czech
-EN| English
-SK| Slovak
-DE| German
-RU| Russian
-PL| Polish
-HU| Hungarian
-FR| French
-RO| Romanian
-
-##payment_instrument
-Payment method codes
-
-Payment method's code|Payment method's description
--------------------|---------------------
-PAYMENT_CARD| Payment cards
-BANK_ACCOUNT| Bank transfer
-PRSMS|Premium SMS
-MPAYMENT|mPayment
-PAYSAFECARD|Paysafecard
-SUPERCASH|superCASH
-GOPAY|GoPay account
-PAYPAL|PayPal account
-BITCOIN| Bitcoin payment
-MASTERPASS| Masterpass
-
-##SWIFT
-Bank SWIFT codes
-
-Bank SWIFT code|Bank name
----------|-----------
-GIBACZPX| Česká spořitelna
-KOMBCZPP| Komerční Banka
-RZBCCZPP| Raiffeisenbank
-BREXCZPP| mBank
-FIOBCZPP| FIO Bank
-CEKOCZPP| ČSOB
-CEKOCZPP-ERA| ERA
-BACXCZPP| Unicredit Bank CZ
-SUBASKBX| Všeobecná úverová banka
-TATRSKBX| Tatra Banka
-UNCRSKBX| Unicredit Bank SK
-GIBASKBX| Slovenská spořitelna
-POBNSKBA| Poštová Banka
-CEKOSKBX| ČSOB SK
-OTHERS| Special SWIFT without specific bank selected
-BREXPLPW|mBank
-CITIPLPX|Citi Handlowy
-BPKOPLPW-IKO|IKO
-BPKOPLPW-INTELIGO|Inteligo
-IVSEPLPP|Plus Bank
-BPHKPLPK|BANK BPH S.A.
-TOBAPLPW|Toyota Bank
-VOWAPLP1|Volkswagen Bank
-GBWCPLPP|SGB
-POCZPLP4|Pocztowy bank
-GOPZPLPW|BGZ Bank
-IEEAPLPA|IDEA
-POLUPLPR|BPS
-GBGCPLPK-GIO|Getin Online
-GBGCPLPK-BLIK|Blik
-GBGCPLPK-NOB|Noble bank
-BREXPLPW-OMB|Orange
-WBKPPLPP|BZ WBK
-RCBWPLPW|RAIFFEISEN BANK POLSKA S.A.
-BPKOPLPW|POWSZECHNA KASA OSZCZEDNOSCI BANK POLSKI SA
-ALBPPLPW|Alior Bank
-INGBPLPW|ING Bank Śląski
-PKOPPLPW|PEKAO S.A
-GBGCPLPK|Getin Online
-BIGBPLPW|Bank Millennium
-EBOSPLPW|Bank Ochrony Środowiska
-PPABPLPK|BNP Paribas Polska
-AGRIPLPR|Credit Agricole
-DEUTPLPX|DEUTSCHE BANK POLSKA S.A.
-DNBANOKK|DnB Nord
-NBPLPLPW|E-SKOK
-SOGEPLPW|Eurobank
-PBPBPLPW|POLSKI BANK PRZEDSIEBIORCZOSCI SPOLKA AKCYJNA
-
-##format
-Format of account [statement](https://help.gopay.com/en/s/cj) file
-
-Parameter's value|Description
-------------------|-----
-CSV_A | CSV type A
-CSV_B | CSV type B
-CSV_C | CSV type C
-CSV_D | CSV type D
-XLS_A | XLS type A
-XLS_B | XLS type B
-XLS_C | XLS type C
-ABO_A | ABO (.gpc)
-ABO_B | ABO (.gpc)
-
-##type
-Type of row for the registration of sales
-
-Parameter's value|Description
-------------------|-----
-ITEM|Item
-DELIVERY|Delivery
-DISCOUNT|Discount
-
-##vat_rate
-VAT rate for the registration of sales
-
-Parameter's value|Description
-------------------|-----
-0| VAT rate 0 %
-10| VAT rate 10 %
-15| VAT rate 15 %
-21| VAT rate 21 %
 
 ##state
+Identification status of client's profile
 
-Parameter's value|Description
-------------------|-----
-CREATED|Created
-DELIVERY_FAILED|Delivery failed
-DELIVERED|Delivered
+Parameter’s value|Description
+-----------------|-------------
+PENDING| Identification process in progress
+IDENTIFIED| Identification completed
+PARTIALLY_IDENTIFIED| Identification partially completed
+NOT_IDENTIFIED| Identification was not performed
 
-##eet_mode
+##reasons
+List of reasons why the process has failed or not finished yet
 
-Parameter's value|Description
-------------------|-----
-AUTO|variant A
-EET|variant B
+Parameter’s value|Description
+-----------------|----------
+EXPIRED_IDENTIFICATION| Expired identification
+EXPIRED_IDENT_DOCUMENT| Expired identification's document
+WAITING_IDENT_DOCUMENT| Waiting for identification's document
+WAITING_ADDITIONAL_DOCUMENT| Waiting for additional document
+WAITING_ADDRESS| Waiting for address verification
+WAITING_BANK_ACCOUNT| Waiting for bank account verification
+DENIED_FRAUD| Denied - false document
+DENIED_FACEMATCH|Denied - disagreement of facematch process
+DENIED_BAD_QUALITY_DOCUMENT|Denied - bad quality of document
 
-##state of superCASH batch
+##subjectType
+Legal type of identification subject
 
-Parameter's value|Description
-------------------|-----
-CREATED|Created
-RUNNING|Running
-QUEUED|Queued
-SCHEDULED|Scheduled
-COMPLETED|Completed
-STOPPED|Stopped
-FAILED|Failed
+Parameter’s value|Description
+-----------------|----------
+PERSON| Person
+COMPANY| Company
 
-##sub_type
-Type of superCASH coupon
+##sex
+Sex
 
-Parameter's value|Description
-------------------|-----
-POSTPAID|Coupon suitable for one-time payment. Payment is generated with coupon creation.
-PREPAID|Coupon suitable for multiple payments. Payment is generated after each customer's payment.
+Parameter’s value|Description
+-----------------|----------
+MALE| Male
+FEMALE| Female
 
-##3ds_result
-3D Secure authorization’s result
+##source
+Specifies the way of how the face image was provided
 
-Parameter's value|Description
-------------------|-----
-"N/"|The payment card doesn't support 3D Secure authorization
-"Y/Y"|Full 3D Secure authorization
-"Y/A"|Partial 3D Secure authorization
-"X/X"|3D Secure authorization was not made
+Parameter’s value|Description
+-----------------|----------
+UPLOAD| File's upload
+WEBCAM| Webcam
+MOBILE| Mobile phone
+
+##Document state
+State of uploaded document
+
+Parameter’s value|Description
+-----------------|----------
+VERIFIED| Valid
+EXPIRED| Expired
+
+##documentType
+Type of uploaded document
+
+Parameter’s value|Description
+-----------------|----------
+ID_CARD| ID card
+DRIVING_LICENSE| Driving license
+PASSPORT| Passport
+VISA| Visa
+UNSUPPORTED| Unsupported document
+UTILITY_BILL| Utility bill
+BANK_STATEMENT| Bank statement
+
+##Verification status of bank account
+Verification status of bank account
+
+Parameter’s value|Description
+-----------------|----------
+VERIFIED| Verified
+
+##Verification status of address
+Verification status of address
+
+Parameter’s value|Description
+-----------------|----------
+VERIFIED| Verified
