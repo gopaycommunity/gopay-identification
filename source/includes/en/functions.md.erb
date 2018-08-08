@@ -1,4 +1,40 @@
 # Advanced features
 
-Advanced features use the same communication with the payment gateway as standard requests
-but allow you advanced functions (e.g. registration of sales (EET), superCASH batch processing and so on).
+## Prefill
+
+> Request
+
+<%= partial "includes/examples", :locals => { :example => data.example.prefill.request } %>
+
+<h5>Request</h5>
+
+```POST /api/prefill-client-data```
+
+<h5>Header of request</h5>
+
+Parameter's name|Parameter's description|Required
+----------------|-----------------------|---------
+Content-Type|application/json|YES
+Authorization|Bearer [```Application <access-token>```](#application-token)|YES
+
+<h5>Body of request</h5>
+
+Parameter's name|Parameter's description|Data´s type
+----------------|-----------------------|------------
+firstName|First name|	string
+lastName|Last name|	string
+email|Valid e-mail address|	string
+phoneNumber|Phone number with country code|string
+domesticBankAccount|Domestic form of bank account|string
+[internationalBankAccount](#internationalbankaccount)|IBAN|object
+address|Address|string
+
+> Response
+
+<%= partial "includes/examples", :locals => { :example => data.example.prefill.response } %>
+
+<h5>Response</h5>
+
+Parameter's name|Parameter's description|Data´s type
+----------------|-----------------------|------------
+prefillId| ID of completed operation| string
