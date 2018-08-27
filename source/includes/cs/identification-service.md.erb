@@ -60,7 +60,7 @@ URL pro přesměrování: `https://client.beta.dev.gopay.cz/identification`
 
 Umožňuje vygenrovat PDF opis identifikovaného Klienta.
 
-Parametr `CLIENT-PROFILE-ID` je získán z odpovědi dotazu na [stav identifikace](#state).
+Parametr `clientProfileId` je získán z odpovědi dotazu na [stav identifikace](#state).
 
 
 > Request
@@ -69,7 +69,12 @@ Parametr `CLIENT-PROFILE-ID` je získán z odpovědi dotazu na [stav identifikac
 
 <h5>Request</h5>
 
-```GET /api/client-profile/{CLIENT-PROFILE-ID}/identification-pdf```
+```GET /api/client-profile/{clientProfileId}/identification-pdf```
+
+Název parametru | Popis parametru | Povinný | Datový typ
+--------------------|---------------------------|---------|-------------
+clientProfileId | Identifikátor klientského profilu | ANO | path, string
+onDate| Generování PDF opisu k určitému datu (pokud není uvedeno, je vrácen nejaktuálnější stav)| NE| query, YYYY-MM-DD
 
 <aside class="notice">
   V hlavičce požadavku je možné použít jak Klientský, tak i Aplikační token (pokud byl souhlas Klienta historicky udělen).

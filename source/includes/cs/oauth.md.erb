@@ -71,7 +71,7 @@ V rámci ```GET``` parametrů Odběratel identity předává:
 Název parametru|Popis parametru|
 ---------------|---------------|
 scopes| perm.client.identification (oblast přístupu o kterou Odběratel identity žádá)
-state| Párovací identifikátor (je předáván jako query parametr redirect_url)
+state| Párovací identifikátor (je zpětně vrácen jako GET parametr redirect_uri v dalším kroku)
 client_id| Identifikátor aplikace Odběratele identity
 redirect_uri| URL na něž bude Klient vrácen po udělení souhlasu Odběrateli identity
 
