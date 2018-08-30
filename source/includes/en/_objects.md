@@ -57,7 +57,6 @@ Contains all of the collected identification data
         "faceMatch": {
           "verified": true,
           "source": "UPLOAD",
-          "relDocumentNumber": 123456,
           "ip": "77.75.77.39",
           "dateReceived": "2018-02-15 17:10:44.760"
         },
@@ -166,7 +165,6 @@ Represents person who is being identified
         "faceMatch": {
           "verified": true,
           "source": "UPLOAD",
-          "relDocumentNumber": 123456,
           "ip": "77.75.77.39",
           "dateReceived": "2018-02-15 17:10:44.760"
         },
@@ -239,7 +237,6 @@ Represents face verification of the person
  {
       "verified": true,
       "source": "UPLOAD",
-      "relDocumentNumber": 123456,
       "ip": "77.75.77.39",
       "dateReceived": "2018-02-15 17:10:44.760"
   }
@@ -249,7 +246,6 @@ Parameter´s name|Parameter´s description| Data´s type
 ----------------|-----------------------|-------------
 verified|Holds whether the face verification was successfull|boolean
 [source](#source)|Specifies the way of how the face image was provided|string
-relDocumentNumber|Relation to document number which was the face image compared to|string
 ip|IP address|string
 dateReceived|Date when the face image was acquired|string, yyyy-mm-dd HH:MM:SS:MS
 

@@ -55,7 +55,6 @@ Veškeré informace získané procesem identifikace
         "faceMatch": {
           "verified": true,
           "source": "UPLOAD",
-          "relDocumentNumber": 123456,
           "ip": "77.75.77.39",
           "dateReceived": "2018-02-15 17:10:44.760"
         },
@@ -163,7 +162,6 @@ Název parametru|Popis parametru|Datový typ
         "faceMatch": {
           "verified": true,
           "source": "UPLOAD",
-          "relDocumentNumber": 123456,
           "ip": "77.75.77.39",
           "dateReceived": "2018-02-15 17:10:44.760"
         },
@@ -236,7 +234,6 @@ country|Kód země|string
  {
       "verified": true,
       "source": "UPLOAD",
-      "relDocumentNumber": 123456,
       "ip": "77.75.77.39",
       "dateReceived": "2018-02-15 17:10:44.760"
   }
@@ -246,7 +243,6 @@ Název parametru|Popis parametru|Datový typ
 ---------------|---------------|----------
 verified|Udává, zda byla identidikace úspěšná|boolean
 [source](#source)|Zdroj poskytnutí obrazu|string
-relDocumentNumber|Číslo porovnávaného dokladu|string
 ip|IP adresa|string
 dateReceived|Datum získání obrazu obličeje|string, yyyy-mm-dd HH:MM:SS:MS
 
