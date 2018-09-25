@@ -145,12 +145,12 @@ Contains all of the collected identification data
 
 Parameter´s name|Parameter´s description| Data´s type
 ----------------|-----------------------|-------------
-[persons](#persons)|Represents person who is being identified|object
-[bankAccounts](#bankaccounts)|Represents bank account verification|object
-[addresses](#addresses)|Represents address verification|object
-[additionalDocuments](#additionaldocuments)| Additional documents|object
+[person](#person)|Represents person who is being identified|object
+[bankAccount](#bankaccount)|Represents bank account verification|object
+[address](#address)|Represents address verification|object
+[additionalDocument](#additionaldocument)| Additional documents|object
 
-##persons
+##person
 Represents person who is being identified
 
 
@@ -225,10 +225,10 @@ birthNumber|Birth number|string
 [sex](#sex)|Sex|string
 country|Country code|string
 [faceMatch](#facematch)|Represents face verification of the person|object
-[identDocuments](#identdocuments)|Represents main identification document|object
-[bankAccounts](#bankaccounts)|Represents bank account verification|object
-[addresses](#addresses)|Represents address verification|object
-[additionalDocuments](#additionaldocuments)| Additional documents|object
+[identDocument](#identdocument)|Represents main identification document|object
+[bankAccount](#bankaccount)|Represents bank account verification|object
+[address](#address)|Represents address verification|object
+[additionalDocument](#additionaldocument)| Additional documents|object
 
 ##faceMatch
 Represents face verification of the person
@@ -249,7 +249,7 @@ verified|Holds whether the face verification was successfull|boolean
 ip|IP address|string
 dateReceived|Date when the face image was acquired|string, yyyy-mm-dd HH:MM:SS:MS
 
-##identDocuments
+##identDocument
 Represents main identification document
 
 ```json
@@ -278,7 +278,7 @@ nationalCountry|Country code|string
 ip|IP address|string
 dateReceived|Date when the document was acquired|string, yyyy-mm-dd HH:MM:SS:MS
 
-##bankAccounts
+##bankAccount
 Represents bank account verification
 
 ```json
@@ -309,7 +309,7 @@ bic|Client's SWIFT|string
 ip|IP address|string
 dateReceived|Date when the bank account was acquired|string, yyyy-mm-dd HH:MM:SS:MS
 
-##addresses
+##address
 Represents address verification
 
 ```json
@@ -339,7 +339,7 @@ ip|IP address|string
 dateReceived|Date when the address was acquired|string, yyyy-mm-dd HH:MM:SS:MS
 
 
-##additionalDocuments
+##additionalDocument
 Additional documents
 
 ```json

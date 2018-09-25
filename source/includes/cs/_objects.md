@@ -143,12 +143,12 @@ Veškeré informace získané procesem identifikace
 
 Název parametru|Popis parametru|Datový typ
 ---------------|---------------|----------
-[persons](#persons)|Údaje identifikované osoby|objekt
-[bankAccounts](#bankaccounts)|Identifikace bankovním účtem|objekt
-[addresses](#addresses)|Ověření trvalé adresy|objekt
-[additionalDocuments](#additionaldocuments)|Další doklady|objekt
+[person](#person)|Údaje identifikované osoby|objekt
+[bankAccount](#bankaccount)|Identifikace bankovním účtem|objekt
+[address](#address)|Ověření trvalé adresy|objekt
+[additionalDocument](#additionaldocument)|Další doklady|objekt
 
-##persons
+##person
 Údaje identifikované osoby
 
 ```json
@@ -222,10 +222,10 @@ birthNumber|Rodné číslo|string
 [sex](#sex)|Pohlaví|string
 country|Kód země|string
 [faceMatch](#facematch)|Údaje získané rozpoznáním obličeje|objekt
-[identDocuments](#identdocuments)|Údaje hlavního identifikačního dokladu|objekt
-[bankAccounts](#bankaccounts)|Identifikace bankovním účtem|objekt
-[addresses](#addresses)|Ověření trvalé adresy|objekt
-[additionalDocuments](#additionaldocuments)|Další doklady|objekt
+[identDocument](#identdocument)|Údaje hlavního identifikačního dokladu|objekt
+[bankAccount](#bankaccount)|Identifikace bankovním účtem|objekt
+[address](#address)|Ověření trvalé adresy|objekt
+[additionalDocument](#additionaldocument)|Další doklady|objekt
 
 ##faceMatch
 Údaje získané rozpoznáním obličeje
@@ -246,7 +246,7 @@ verified|Udává, zda byla identidikace úspěšná|boolean
 ip|IP adresa|string
 dateReceived|Datum získání obrazu obličeje|string, yyyy-mm-dd HH:MM:SS:MS
 
-##identDocuments
+##identDocument
 Údaje hlavního identifikačního dokladu
 
 ```json
@@ -275,7 +275,7 @@ nationalCountry|Kód země|string
 ip|IP adresa|string
 dateReceived|Datum získání dokladu|string, yyyy-mm-dd HH:MM:SS:MS
 
-##bankAccounts
+##bankAccount
 Identifikace bankovním účtem
 
 ```json
@@ -306,7 +306,7 @@ bic|SWIFT kód banky Klienta|string
 ip|IP adresa|string
 dateReceived|Datum ověření bankovního účtu|string, yyyy-mm-dd HH:MM:SS:MS
 
-##addresses
+##address
 Ověření trvalé adresy
 
 ```json
@@ -336,7 +336,7 @@ ip|IP adresa|string
 dateReceived|Datum ověření adresy Klienta|string, yyyy-mm-dd HH:MM:SS:MS
 
 
-##additionalDocuments
+##additionalDocument
 Další doklady
 
 ```json
